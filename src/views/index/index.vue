@@ -6,9 +6,7 @@
       </div>
       <div class="head-card-content">
         <h2 class="title">{{ sayHi }}! {{ t('indexPage.descTitle') }}</h2>
-        <p class="desc">
-          vue3 Element-plus
-        </p>
+        <p class="desc"> vue3 Element-plus </p>
       </div>
     </div>
     <div class="content">
@@ -46,20 +44,20 @@
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
-            <Echarts
-              :title="t('indexPage.chartTitle')"
-              :index="1"
-              headerIcon="icon-chart-line"
-              :style="{
-                height: '200px',
-              }"
-              :options="{
-                series: series2,
-                xAxis,
-                yAxis,
-                toolbox,
-              }"
-            />
+          <Echarts
+            :title="t('indexPage.chartTitle')"
+            :index="1"
+            headerIcon="icon-chart-line"
+            :style="{
+              height: '200px',
+            }"
+            :options="{
+              series: series2,
+              xAxis,
+              yAxis,
+              toolbox,
+            }"
+          />
         </el-col>
       </el-row>
     </div>

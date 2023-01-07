@@ -28,7 +28,7 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <!-- <el-form-item :label="t('settings.theme')">
+            <el-form-item :label="t('settings.theme')">
               <el-select
                 class="theme-select-width"
                 v-model="settings.theme"
@@ -44,7 +44,7 @@
                 >
                 </el-option>
               </el-select>
-            </el-form-item> -->
+            </el-form-item>
             <el-form-item label="Logo">
               <el-switch v-model="settings.isLogo" />
             </el-form-item>

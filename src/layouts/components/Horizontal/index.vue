@@ -87,7 +87,7 @@
 
   const activeTextColor = computed(() => {
     const mcolor = whiteColors.indexOf(menuBgColor.value) !== -1;
-    return mcolor ? theme : '#fff';
+    return mcolor ? theme.value : '#fff';
   });
 
   const defaultActive = computed(() => {

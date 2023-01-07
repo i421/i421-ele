@@ -18,6 +18,10 @@ export default {
   },
   navbar: {
     logOut: '退出登录',
+    updatePassword: '更新密码',
+    oldPassword: '原密码',
+    newPassword: '新密码',
+    dashboard: '仪表盘',
     github: '项目地址',
     theme: '切换换肤',
     full: '全屏',

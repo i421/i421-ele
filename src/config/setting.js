@@ -36,7 +36,7 @@ export const setting = {
   // 菜单栏默认打开路由
   defaultOpeneds: ['/'],
   // vertical布局时是否只保持一个子菜单的展开
-  uniqueOpened: false,
+  uniqueOpened: true,
   //token名称
   tokenName: 'accessToken',
   //是否开启登录拦截
@@ -64,7 +64,7 @@ export const setting = {
   //token失效回退到登录页时是否记录本次的路由
   recordRoute: true,
   // 路由白名单不经过token校验的路由
-  routesWhiteList: ['/login', '/register', '/404', '/401'],
+  routesWhiteList: ['/login', '/register', '/404', '/401', '/401Page', '/404Page'],
   // 需要加loading层的请求，防止重复提交
   debounce: [],
   // 导入时想要省略的扩展名列表
@@ -77,4 +77,6 @@ export const setting = {
   drop_console: true,
   // 是否删除生产环境debugger
   drop_debugger: true,
+  // 密码秘钥
+  cryptoKey: '01928aAjJKkEU37465',
 };

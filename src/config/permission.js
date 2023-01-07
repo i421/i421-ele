@@ -6,6 +6,7 @@ import store from '@/store';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { getPageTitle } from '@/utils/index';
+import { recordLog } from '@/utils/log';
 import { setting } from '@/config/setting';
 const { authentication, loginInterception, progressBar, routesWhiteList, recordRoute } = setting;
 
@@ -72,6 +73,9 @@ router.beforeEach(async (to, from, next) => {
   }
   document.title = getPageTitle(to.meta.title);
 });
-router.afterEach(() => {
+router.afterEach((to, from, failure) => {
+  if (!failure) {
+    recordLog(to);
+  }
   if (progressBar) NProgress.done();
 });

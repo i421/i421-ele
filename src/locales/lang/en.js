@@ -17,6 +17,9 @@ export default {
   },
   navbar: {
     logOut: 'Log Out',
+    updatePassword: 'Update Password',
+    oldPassword: 'old Password',
+    newPassword: 'new Password',
     dashboard: 'Dashboard',
     github: 'Github',
     theme: 'Change theme',

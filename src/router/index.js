@@ -76,8 +76,7 @@ export const constantRoutes = [
   },
 ];
 
-export const asyncRoutes = [
-];
+export const asyncRoutes = [];
 
 const router = createRouter({
   history: createWebHashHistory(),

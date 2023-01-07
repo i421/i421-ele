@@ -21,7 +21,9 @@
     "@icon-park/vue-next": "^1.4.0",
     "@soerenmartius/vue3-clipboard": "^0.1.2",
     "axios": "^0.21.1",
+    "crypto-js": "^4.1.1",
     "echarts": "^5.1.2",
+    "echarts-gl": "^2.0.9",
     "element-plus": "2.2.17",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
@@ -30,11 +32,15 @@
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",
     "screenfull": "^5.1.0",
+    "sm-crypto": "^0.3.11",
     "vue": "^3.2.33",
     "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.15",
     "vue3-count-to": "^1.0.11",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vxe-table": "^4.3.8",
+    "vxe-table-plugin-element": "^3.0.6",
+    "xe-utils": "^3.5.7"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
@@ -119,6 +125,7 @@
         "element-plus/es/components/descriptions-item/style/index",
         "element-plus/es/components/descriptions/style/css",
         "element-plus/es/components/descriptions/style/index",
+        "element-plus/es/components/dialog/style/index",
         "element-plus/es/components/divider/style/css",
         "element-plus/es/components/divider/style/index",
         "element-plus/es/components/drawer/style/css",
@@ -189,7 +196,10 @@
         "vue-i18n",
         "vue-router",
         "vue3-count-to",
-        "vuex"
+        "vuex",
+        "vxe-table",
+        "vxe-table-plugin-element",
+        "xe-utils"
       ]
     }
   }

@@ -4,7 +4,7 @@
     class="logo-wrapper"
     :class="{ unfold: collapse, horizontal: mode === 'horizontal' }"
   >
-  <span class="logo-title" :style="{ color: textColor }" v-if="!collapse"> i421 </span>
+    <span class="logo-title" :style="{ color: textColor }" v-if="!collapse"> i421-ele </span>
   </div>
 </template>
 

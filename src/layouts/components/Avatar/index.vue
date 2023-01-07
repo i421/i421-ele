@@ -10,10 +10,45 @@
     </span>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item command="updatePasswd" divided>{{
+          t('navbar.updatePassword')
+        }}</el-dropdown-item>
         <el-dropdown-item command="logout" divided>{{ t('navbar.logOut') }}</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+
+  <!-- 更新密码弹窗 -->
+  <el-dialog v-model="dialogFormVisible" :title="t('navbar.updatePassword')">
+    <el-form :model="form" :rules="formRules" ref="updatePasswordForm">
+      <el-form-item :label="t('navbar.oldPassword')" label-width="140px" prop="old_password">
+        <el-input
+          type="password"
+          v-model="form.old_password"
+          autocomplete="off"
+          show-password
+          clearable
+        />
+      </el-form-item>
+      <el-form-item :label="t('navbar.newPassword')" label-width="140px" prop="new_password">
+        <el-input
+          type="password"
+          v-model="form.new_password"
+          autocomplete="off"
+          show-password
+          clearable
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">{{ t('btn.cancel') }}</el-button>
+        <el-button type="primary" @click="submitUpdatePassword">
+          {{ t('btn.confirm') }}
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
@@ -23,19 +58,43 @@
 </script>
 
 <script setup>
-  import { ref } from 'vue';
+  import { reactive, ref } from 'vue';
   import { useStore } from 'vuex';
-  import { ElMessageBox } from 'element-plus';
+  import { ElMessageBox, ElNotification } from 'element-plus';
   import { setting } from '@/config/setting';
   import { useRouter } from 'vue-router';
   import { useI18n } from 'vue-i18n';
+  import avatarLogo from '@/assets/15922_100.gif';
+  import { updatePassword } from '@/api/system/account';
 
   const { title, recordRoute } = setting;
   const { t } = useI18n();
-  const avatar = ref('https://i.gtimg.cn/club/item/face/img/2/15922_100.gif');
-  const userName = ref('ss');
+  const avatar = ref(avatarLogo);
+  // const userName = ref('ss');
   const store = useStore();
   const router = useRouter();
+
+  const userName = computed(() => {
+    return store.getters['user/username'];
+  });
+
+  const updatePasswordForm = ref(null);
+  const dialogFormVisible = ref(false);
+  const form = reactive({
+    old_password: '',
+    new_password: '',
+  });
+
+  const formRules = reactive({
+    old_password: [
+      { required: true, message: t('navbar.oldPassword') + t('modal.form.require') },
+      { min: 4, max: 20, message: t('navbar.oldPassword') + t('modal.form.between4_20') },
+    ],
+    new_password: [
+      { required: true, message: t('navbar.newPassword') + t('modal.form.require') },
+      { min: 4, max: 20, message: t('navbar.newPassword') + t('modal.form.between4_20') },
+    ],
+  });
 
   defineProps({
     color: {
@@ -49,9 +108,33 @@
       case 'logout':
         handleLogout();
         break;
+      case 'updatePasswd':
+        showUpdatePasswordDialog();
+        break;
       default:
         break;
     }
+  };
+
+  const showUpdatePasswordDialog = () => {
+    dialogFormVisible.value = true;
+  };
+
+  // 提交更新密码
+  const submitUpdatePassword = () => {
+    updatePasswordForm.value.validate((valid) => {
+      if (valid) {
+        const data = {
+          old_password: form.old_password,
+          new_password: form.new_password,
+        };
+        updatePassword(data).then((res) => {
+          ElMessage.success(t('notice.success'));
+          dialogFormVisible.value = false;
+          updatePasswordForm.value.resetFields();
+        });
+      }
+    });
   };
 
   const handleLogout = () => {

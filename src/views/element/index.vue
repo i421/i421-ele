@@ -2,9 +2,7 @@
   <div class="element-container">
     <Descrition :title="t('element.title')">
       <template #descrition>
-        <a href="#" target="_blank"
-          >Element-Plus</a
-        >
+        <a href="#" target="_blank">Element-Plus</a>
         UI组件库，以下是常用的组件
       </template>
     </Descrition>
