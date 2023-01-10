@@ -46,8 +46,8 @@
       const validateForm = ref(null);
       const state = reactive({
         ruleForm: {
-          username: 'admin',
-          password: 'admin',
+          username: 'vben',
+          password: '123456',
         },
         loading: false,
         checkedPwd: false,

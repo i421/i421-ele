@@ -14,6 +14,21 @@ export default {
     errorPages: 'Error Pages',
     page401: '401',
     page404: '404',
+    dashboard: {
+      dashboardPage: 'Dashboard',
+      workbench: 'Workbench',
+      analysis: 'Analysis',
+    },
+    system: {
+      systemPage: 'System Manageant',
+      dept: 'Dept Management',
+      account: 'Account Management',
+      role: 'Role Management',
+      menu: 'Menu Management',
+      log: 'Log Management',
+      dict: 'Dict Management',
+      password: 'Password Management',
+    },
   },
   navbar: {
     logOut: 'Log Out',
@@ -31,7 +46,6 @@ export default {
     size: 'Global Size',
     profile: 'Profile',
   },
-
   login: {
     title: 'Login',
     rules: {
@@ -39,7 +53,7 @@ export default {
       password: 'Please enter your password',
     },
     loginBtn: 'Login',
-    desc: 'network management background management system',
+    desc: 'Background management system',
     tip: 'Click login for a quick experience',
     username: 'Username',
     password: 'Password',
@@ -189,5 +203,109 @@ export default {
   btn: {
     confirm: 'Confirm',
     cancel: 'Cancel',
+    add: 'Add',
+    submit: 'Submit',
+    reset: 'Reset',
+    search: 'Search',
+    show: 'Show',
+    restart: 'Restart',
+    download: 'download',
+    help: 'Help',
+    resolve: 'Resolve',
+    back: 'Back',
+    update: 'Update',
+    delete: 'Delete',
+  },
+  modal: {
+    input: {
+      placeholder: 'Please Input',
+    },
+    title: {
+      editAndStore: 'Edit&store',
+      createAndStore: 'create&store',
+    },
+    confirm: {
+      content: 'Are you sure you want to delete this data? ',
+    },
+    form: {
+      require: 'require',
+      errorFormat: 'format error',
+      between0_999: 'must between 0-999',
+      between4_20: 'must between 4-20',
+      between2_20: 'must between 2-20',
+      min4: 'min 4',
+      max20: 'max 20',
+    },
+  },
+  table: {
+    seq: 'Seq',
+    created: 'Created',
+    updated: 'Updated',
+    operation: 'Operation',
+  },
+  deptPage: {
+    name: 'Name',
+    remark: 'Remark',
+    sort: 'sort',
+    status: 'Status',
+    statusList: {
+      disable: 'Disable',
+      enable: 'Enable',
+    },
+  },
+  accountPage: {
+    account: 'Account',
+    nickname: 'Nickname',
+    email: 'Email',
+    role: 'Role',
+    remark: 'Remark',
+    password: 'Password',
+    status: 'Status',
+    statusList: {
+      disable: 'Disable',
+      enable: 'Enable',
+    },
+  },
+  rolePage: {
+    roleName: 'Name',
+    value: 'Value',
+    sort: 'Sort',
+    remark: 'Remark',
+    status: 'Status',
+    statusList: {
+      disable: 'Disable',
+      enable: 'Enable',
+    },
+  },
+  dictPage: {
+    code: 'Code',
+    c_key: 'key',
+    value: 'Value',
+    sort: 'Sort',
+    remark: 'Remark',
+  },
+  logPage: {
+    user_id: 'User ID',
+    title: 'Title',
+    operation: 'Operation',
+    ip: 'IP',
+  },
+  menuPage: {
+    icon: 'Icon',
+    name: 'Name',
+    status: 'Status',
+    parentId: 'Parent',
+    type: 'Type',
+    path: 'Path',
+    sort: 'Sort',
+    typeList: {
+      btn: 'Button',
+      function: 'Menu',
+      menu: 'Column',
+    },
+    statusList: {
+      enable: 'Enable',
+      disable: 'Disable',
+    },
   },
 };

@@ -38,7 +38,7 @@ export const setting = {
   // vertical布局时是否只保持一个子菜单的展开
   uniqueOpened: true,
   //token名称
-  tokenName: 'accessToken',
+  tokenName: 'Authorization',
   //是否开启登录拦截
   loginInterception: true,
   //token在localStorage、sessionStorage存储的key的名称

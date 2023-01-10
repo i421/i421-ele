@@ -17,6 +17,7 @@
               <h3 class="title">{{ t('indexPage.resourceTitle') }}</h3>
             </template>
             <div class="card-body" :class="{ mobile: isMobile }">
+              <!--
               <div
                 class="item"
                 v-for="(item, index) in state.list"
@@ -24,11 +25,11 @@
                 :key="index"
               >
                 <div class="lf">
-                  <!-- <img class="img" :src="`${state.prefix}${item.logo}`" /> -->
                   <div class="title" v-if="item.title">{{ item.title }}</div>
                 </div>
                 <div class="desc"> {{ item.desc }} </div>
               </div>
+              -->
             </div>
           </el-card>
           <el-card class="card" shadow="hover">
@@ -36,28 +37,16 @@
               <h3 class="title">{{ t('indexPage.envTitle') }}</h3>
             </template>
             <el-descriptions class="margin-top" :column="3" border>
+              <!--
               <el-descriptions-item v-for="(value, key) in packpage.dependencies" :key="key">
                 <template #label>
                   {{ key }}
                 </template>
                 {{ value }}
               </el-descriptions-item>
+              -->
             </el-descriptions>
           </el-card>
-          <Echarts
-            :title="t('indexPage.chartTitle')"
-            :index="1"
-            headerIcon="icon-chart-line"
-            :style="{
-              height: '200px',
-            }"
-            :options="{
-              series: series2,
-              xAxis,
-              yAxis,
-              toolbox,
-            }"
-          />
         </el-col>
       </el-row>
     </div>
@@ -74,7 +63,6 @@
   import { ref, computed, reactive, onBeforeMount } from 'vue';
 
   import { CountTo } from 'vue3-count-to';
-  import Echarts from '@/components/Echarts/index.vue';
 
   import packpage from '../../../package.json';
   import { useI18n } from 'vue-i18n';
@@ -106,23 +94,6 @@
   const sayHi = ref(thisTime);
   const avatar = ref('https://i.gtimg.cn/club/item/face/img/2/15922_100.gif');
 
-  const series2 = reactive([
-    {
-      data: [820, 932, 901, 934, 1290, 1330, 1320],
-      type: 'line',
-      smooth: true,
-    },
-  ]);
-
-  const xAxis = reactive({
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  });
-
-  const yAxis = reactive({
-    type: 'value',
-  });
-
   const toolbox = reactive({
     show: true,
   });
@@ -143,7 +114,7 @@
   };
 
   onBeforeMount(() => {
-    onGetResouceList();
+    // onGetResouceList();
   });
 </script>
 

@@ -1,11 +1,11 @@
 import request from '@/utils/request.js';
 
 // 分页获取用户信息
-export const getAccountPage = (data) => {
+export const getAccountPage = (params) => {
   return request({
-    url: '/sys/user/page',
-    method: 'post',
-    data,
+    url: '/system/getAccountList',
+    method: 'get',
+    params,
   });
 };
 

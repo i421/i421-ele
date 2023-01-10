@@ -10,11 +10,11 @@ export const getMenus = (data) => {
 };
 
 // 分页获取菜单信息
-export const getMenuPage = (data) => {
+export const getMenuPage = (params) => {
   return request({
-    url: '/sys/menu/page',
-    method: 'post',
-    data,
+    url: '/system/getMenuList',
+    method: 'get',
+    params,
   });
 };
 

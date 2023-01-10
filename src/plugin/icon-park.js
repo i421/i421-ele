@@ -9,6 +9,11 @@
 import { install } from '@icon-park/vue-next/es/all';
 // iconpark
 import {
+  Key,
+  ApplicationMenu,
+  Config,
+  Analysis,
+  Dashboard,
   User,
   Lock,
   Alipay,

@@ -1,11 +1,11 @@
 import request from '@/utils/request.js';
 
 // 分页获取日志列表
-export const getLogPage = (data) => {
+export const getLogPage = (params) => {
   return request({
-    url: '/sys/log/page',
-    method: 'post',
-    data,
+    url: '/system/getLogList',
+    method: 'get',
+    params,
   });
 };
 

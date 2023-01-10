@@ -1,7 +1,6 @@
 /**
  * @description 项目简体中文配置
  */
-
 export default {
   route: {
     home: '首页',
@@ -15,6 +14,21 @@ export default {
     errorPages: '错误页面',
     page401: '401',
     page404: '404',
+    dashboard: {
+      dashboardPage: '工作台',
+      workbench: '工作台',
+      analysis: '分析页',
+    },
+    system: {
+      systemPage: '系统管理',
+      dept: '部门管理',
+      account: '用户管理',
+      role: '角色管理',
+      menu: '菜单管理',
+      log: '操作日志',
+      dict: '字典管理',
+      password: '更新密码',
+    },
   },
   navbar: {
     logOut: '退出登录',
@@ -39,7 +53,7 @@ export default {
       password: '请输入密码',
     },
     loginBtn: '登录',
-    desc: '网管后台管理系统',
+    desc: '后台管理系统',
     tip: '点击登录快速体验',
     username: '账号',
     password: '密码',
@@ -187,5 +201,109 @@ export default {
   btn: {
     confirm: '确定',
     cancel: '取消',
+    add: '新增',
+    submit: '提交',
+    reset: '重置',
+    search: '查询',
+    show: '查看',
+    restart: '重启',
+    download: '下载',
+    help: '帮助',
+    resolve: '解决方案',
+    back: '返回',
+    update: '更新',
+    delete: '删除',
+  },
+  modal: {
+    input: {
+      placeholder: '请输入',
+    },
+    title: {
+      editAndStore: '编辑&保存',
+      createAndStore: '新增&保存',
+    },
+    confirm: {
+      content: '您确定要删除数据吗?',
+    },
+    form: {
+      require: '必填',
+      errorFormat: '格式不正确',
+      between0_999: '必须在0-999',
+      between4_20: '必须在4-20位',
+      between2_20: '必须在2-20位',
+      min4: '至少4位',
+      max20: '不能超过20位',
+    },
+  },
+  table: {
+    seq: '序号',
+    created: '创建时间',
+    updated: '更新时间',
+    operation: '操作',
+  },
+  deptPage: {
+    name: '部门名称',
+    remark: '备注',
+    sort: '排序',
+    status: '状态',
+    statusList: {
+      disable: '停用',
+      enable: '启用',
+    },
+  },
+  accountPage: {
+    account: '用户名',
+    nickname: '昵称',
+    email: '邮箱',
+    role: '角色',
+    password: '密码',
+    remark: '备注',
+    status: '状态',
+    statusList: {
+      disable: '停用',
+      enable: '启用',
+    },
+  },
+  rolePage: {
+    roleName: '角色名称',
+    value: '角色值',
+    sort: '排序',
+    remark: '备注',
+    status: '状态',
+    statusList: {
+      disable: '停用',
+      enable: '启用',
+    },
+  },
+  dictPage: {
+    code: '码',
+    c_key: '值',
+    value: '名称',
+    sort: '排序',
+    remark: '备注',
+  },
+  logPage: {
+    user_id: '用户ID',
+    title: '名称',
+    operation: '操作',
+    ip: 'IP',
+  },
+  menuPage: {
+    icon: '图标',
+    name: '名称',
+    status: '状态',
+    parentId: '父节点',
+    type: '类型',
+    path: '路径',
+    sort: '排序',
+    typeList: {
+      btn: '按钮',
+      function: '菜单',
+      menu: '目录',
+    },
+    statusList: {
+      enable: '启用',
+      disable: '禁用',
+    },
   },
 };

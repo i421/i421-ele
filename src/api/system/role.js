@@ -1,19 +1,19 @@
 import request from '@/utils/request.js';
 // 获取角色列表
-export const getRoles = (data) => {
+export const getRoles = (params) => {
   return request({
-    url: '/sys/role/query',
-    method: 'post',
-    data,
+    url: '/system/getRoleList',
+    method: 'get',
+    params,
   });
 };
 
 // 分页获取角色列表
-export const getRolePage = (data) => {
+export const getRolePage = (params) => {
   return request({
-    url: '/sys/role/page',
-    method: 'post',
-    data,
+    url: '/system/getRoleListByPage',
+    method: 'get',
+    params,
   });
 };
 
