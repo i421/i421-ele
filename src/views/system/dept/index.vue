@@ -41,7 +41,7 @@
           title-width="100"
           @submit="submitEvent"
         >
-          <vxe-form-item field="dept" :title="t('deptPage.name')" :span="24" :item-render="{}">
+          <vxe-form-item field="name" :title="t('deptPage.name')" :span="24" :item-render="{}">
             <template #default="{ data }">
               <vxe-input
                 v-model="data.name"
@@ -58,6 +58,23 @@
                   :key="item.value"
                   :value="item.value"
                   :label="item.label"
+                ></vxe-option>
+              </vxe-select>
+            </template>
+          </vxe-form-item>
+          <vxe-form-item
+            field="parentId"
+            :title="t('deptPage.parentId')"
+            :span="24"
+            :item-render="{}"
+          >
+            <template #default="{ data }">
+              <vxe-select v-model="data.parentId" transfer>
+                <vxe-option
+                  v-for="item in deptList"
+                  :key="item.id"
+                  :value="item.id"
+                  :label="item.name"
                 ></vxe-option>
               </vxe-select>
             </template>
@@ -102,7 +119,7 @@
 
   const xTable = ref(null);
 
-  const roleList = ref([]);
+  const deptList = ref([]);
 
   // 查询条件： 用户状态列表
   const statusList = ref([
@@ -135,14 +152,12 @@
       id: null,
       name: null,
       status: null,
+      parentId: null,
       remark: null,
       sort: null,
     },
     formRules: {
-      name: [
-        { required: true, message: t('deptPage.name') + t('modal.form.require') },
-        { min: 4, max: 20, message: t('deptPage.name') + t('modal.form.between4_20') },
-      ],
+      name: [{ required: true, message: t('deptPage.name') + t('modal.form.require') }],
       sort: [
         {
           type: 'number',
@@ -216,8 +231,13 @@
             page: page.currentPage,
             pageSize: page.pageSize,
           };
+          if (form.name != null) {
+            data.name = form.name;
+          }
+          if (form.status != null) {
+            data.status = form.status;
+          }
           return getDeptPage(data).then((res) => {
-            console.log(res.data);
             let data = res.data;
             let total = res.data.length;
             return { data, total };
@@ -250,6 +270,7 @@
 
   // 新增用户
   const openAddModal = () => {
+    getDeptList();
     gridOptions.formData = {
       id: null,
       name: '',
@@ -275,10 +296,16 @@
 
   // 编辑
   const editEvent = (row) => {
+    getDeptList();
+    // 顶层转化
+    if (row.parentId == -1) {
+      row.parentId = '';
+    }
     gridOptions.formData = {
       id: row.id,
       name: row.name,
       remark: row.remark,
+      parentId: row.parentId,
       status: row.status,
       sort: row.sort,
     };
@@ -293,6 +320,10 @@
 
   // 提交更新
   const submitEvent = () => {
+    // 顶层转化-1
+    if (gridOptions.formData.parentId == '') {
+      gridOptions.formData.parentId = -1;
+    }
     if (gridOptions.formData.id) {
       // 更新
       updateDept(gridOptions.formData).then((res) => {
@@ -310,6 +341,20 @@
     }
     gridOptions.selectRow = null;
     gridOptions.showEdit = false;
+  };
+
+  // 获取部门列表
+  const getDeptList = async () => {
+    const data = {
+      page: 1,
+      pageSize: 10000,
+      status: 0,
+    };
+    return getDeptPage(data).then((res) => {
+      nextTick(() => {
+        deptList.value = res.data;
+      });
+    });
   };
 
   // 请求

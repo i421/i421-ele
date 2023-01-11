@@ -12,7 +12,7 @@ export const getDeptPage = (params) => {
 // 更新部门
 export const updateDept = (data) => {
   return request({
-    url: '/sys/dept/update',
+    url: '/system/updateOrCreateDept',
     method: 'post',
     data,
   });
@@ -21,8 +21,8 @@ export const updateDept = (data) => {
 // 删除部门
 export const deleteDept = (data) => {
   return request({
-    url: '/sys/dept/delete',
-    method: 'post',
+    url: '/system/deleteDept',
+    method: 'delete',
     data,
   });
 };
@@ -30,7 +30,7 @@ export const deleteDept = (data) => {
 // 新增部门
 export const storeDept = (data) => {
   return request({
-    url: '/sys/dept/insert',
+    url: '/system/updateOrCreateDept',
     method: 'post',
     data,
   });

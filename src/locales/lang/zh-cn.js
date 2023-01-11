@@ -119,6 +119,7 @@ export default {
     evening: '晚上好',
   },
   notice: {
+    success: '成功',
     msg: '欢迎登录',
   },
   tabs: {
@@ -245,6 +246,7 @@ export default {
     name: '部门名称',
     remark: '备注',
     sort: '排序',
+    parentId: '上级部门',
     status: '状态',
     statusList: {
       disable: '停用',

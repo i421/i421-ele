@@ -119,6 +119,7 @@ export default {
     evening: 'Good evening',
   },
   notice: {
+    success: 'Success',
     msg: 'Welcome to ',
   },
   tabs: {
@@ -247,6 +248,7 @@ export default {
     name: 'Name',
     remark: 'Remark',
     sort: 'sort',
+    parentId: 'Parent',
     status: 'Status',
     statusList: {
       disable: 'Disable',
