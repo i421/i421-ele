@@ -63,11 +63,16 @@
               ></vxe-input>
             </template>
           </vxe-form-item>
-          <vxe-form-item field="remark" :title="t('rolePage.remark')" :span="24" :item-render="{}">
+          <vxe-form-item
+            field="description"
+            :title="t('rolePage.description')"
+            :span="24"
+            :item-render="{}"
+          >
             <template #default="{ data }">
               <vxe-input
-                v-model="data.remark"
-                :placeholder="t('modal.input.placeholder') + t('rolePage.remark')"
+                v-model="data.description"
+                :placeholder="t('modal.input.placeholder') + t('rolePage.description')"
               ></vxe-input>
             </template>
           </vxe-form-item>
@@ -116,7 +121,7 @@
           line: true,
           iconOpen: 'vxe-icon-square-minus',
           iconClose: 'vxe-icon-square-plus',
-          parentField: 'pid',
+          parentField: 'parentId',
           rowField: 'id',
         }"
       >
@@ -273,7 +278,7 @@
       { field: 'roleName', title: t('rolePage.roleName') },
       { field: 'value', title: t('rolePage.value') },
       { field: 'sort', title: t('rolePage.sort') },
-      { field: 'remark', title: t('rolePage.remark') },
+      { field: 'description', title: t('rolePage.description') },
       {
         field: 'status',
         title: t('rolePage.status'),
@@ -296,12 +301,12 @@
   // 新增角色
   const openAddModal = () => {
     gridOptions.formData = {
-      id: '',
-      roleName: '',
-      value: '',
-      status: '',
-      remark: '',
-      sort: '',
+      id: null,
+      roleName: null,
+      value: null,
+      status: null,
+      description: null,
+      sort: null,
     };
     gridOptions.selectRow = null;
     gridOptions.showEdit = true;
@@ -325,7 +330,7 @@
       id: row.id,
       roleName: row.roleName,
       value: row.value,
-      remark: row.remark,
+      description: row.description,
       status: row.status,
       sort: row.sort,
     };
@@ -372,15 +377,8 @@
   // 获取菜单列表
   const getMenuList = async () => {
     const data = {
-      cols: [],
-      conds: [],
-      distinct: false,
-      orders: [
-        {
-          asc: true,
-          col: 'created',
-        },
-      ],
+      page: 1,
+      pageSize: 10000,
     };
     getMenus(data).then((res) => {
       nextTick(() => {

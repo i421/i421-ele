@@ -259,6 +259,7 @@ export default {
     email: '邮箱',
     role: '角色',
     password: '密码',
+    deptId: '部门',
     remark: '备注',
     status: '状态',
     statusList: {
@@ -270,8 +271,8 @@ export default {
     roleName: '角色名称',
     value: '角色值',
     sort: '排序',
-    remark: '备注',
     status: '状态',
+    description: '备注',
     statusList: {
       disable: '停用',
       enable: '启用',
@@ -281,6 +282,7 @@ export default {
     code: '码',
     c_key: '值',
     value: '名称',
+    parentId: '父节点',
     sort: '排序',
     remark: '备注',
   },
@@ -298,6 +300,7 @@ export default {
     type: '类型',
     path: '路径',
     sort: '排序',
+    configPerm: '配置权限',
     typeList: {
       btn: '按钮',
       function: '菜单',

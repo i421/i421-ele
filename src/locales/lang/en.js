@@ -262,6 +262,7 @@ export default {
     role: 'Role',
     remark: 'Remark',
     password: 'Password',
+    deptId: 'Dept',
     status: 'Status',
     statusList: {
       disable: 'Disable',
@@ -272,7 +273,7 @@ export default {
     roleName: 'Name',
     value: 'Value',
     sort: 'Sort',
-    remark: 'Remark',
+    description: 'Description',
     status: 'Status',
     statusList: {
       disable: 'Disable',
@@ -283,6 +284,7 @@ export default {
     code: 'Code',
     c_key: 'key',
     value: 'Value',
+    parentId: 'Parent',
     sort: 'Sort',
     remark: 'Remark',
   },
@@ -300,6 +302,7 @@ export default {
     type: 'Type',
     path: 'Path',
     sort: 'Sort',
+    configPerm: 'configPerm',
     typeList: {
       btn: 'Button',
       function: 'Menu',

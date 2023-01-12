@@ -52,7 +52,7 @@
           </vxe-form-item>
           <vxe-form-item field="status" :title="t('deptPage.status')" :span="24" :item-render="{}">
             <template #default="{ data }">
-              <vxe-select v-model="data.status" transfer>
+              <vxe-select v-model="data.status" transfer clearable>
                 <vxe-option
                   v-for="item in statusList"
                   :key="item.value"
@@ -82,7 +82,7 @@
           <vxe-form-item field="remark" :title="t('deptPage.remark')" :span="24" :item-render="{}">
             <template #default="{ data }">
               <vxe-input
-                v-model.number="data.remark"
+                v-model="data.remark"
                 :placeholder="t('modal.input.placeholder') + t('deptPage.remark')"
               ></vxe-input>
             </template>

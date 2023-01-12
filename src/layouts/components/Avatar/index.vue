@@ -125,8 +125,8 @@
     updatePasswordForm.value.validate((valid) => {
       if (valid) {
         const data = {
-          old_password: form.old_password,
-          new_password: form.new_password,
+          oldPwd: form.old_password,
+          newPwd: form.new_password,
         };
         updatePassword(data).then((res) => {
           ElMessage.success(t('notice.success'));

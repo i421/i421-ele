@@ -73,14 +73,21 @@ instance.interceptors.response.use(
   (response) => {
     const res = response.data;
     const { data } = response;
-    const { code, msg } = data;
+    const { code, message } = data;
 
     // 操作成功
     if (successCode.indexOf(code) !== -1) {
+      /*
+      if (code == 1) {
+        ElMessage.error(message || `后端接口${code}异常`);
+      } else {
+        return res;
+      }
+      */
       return res;
     } else {
       console.log('---====', response);
-      handleCode(code, msg);
+      handleCode(code, message);
       return Promise.reject();
     }
   },
@@ -90,7 +97,7 @@ instance.interceptors.response.use(
     if (error.response && error.response.data) {
       const { status, data } = response;
       console.log('---===1222=', response);
-      handleCode(status, data.msg || message);
+      handleCode(status, data.message || message);
       return Promise.reject(error);
     } else {
       let { message } = error;

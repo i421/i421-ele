@@ -80,6 +80,23 @@
                   v-for="item in roleList"
                   :key="item.id"
                   :value="item.id"
+                  :label="item.roleName"
+                ></vxe-option>
+              </vxe-select>
+            </template>
+          </vxe-form-item>
+          <vxe-form-item
+            field="dept_id"
+            :title="t('accountPage.deptId')"
+            :span="24"
+            :item-render="{}"
+          >
+            <template #default="{ data }">
+              <vxe-select v-model="data.dept_id" transfer>
+                <vxe-option
+                  v-for="item in deptList"
+                  :key="item.id"
+                  :value="item.id"
                   :label="item.name"
                 ></vxe-option>
               </vxe-select>
@@ -117,14 +134,6 @@
               </vxe-select>
             </template>
           </vxe-form-item>
-          <vxe-form-item field="email" :title="t('accountPage.email')" :span="24" :item-render="{}">
-            <template #default="{ data }">
-              <vxe-input
-                v-model="data.email"
-                :placeholder="t('modal.input.placeholder') + t('accountPage.email')"
-              ></vxe-input>
-            </template>
-          </vxe-form-item>
           <vxe-form-item align="center" title-align="left" :span="24">
             <template #default>
               <vxe-button status="primary" type="submit">{{ t('btn.submit') }}</vxe-button>
@@ -141,6 +150,7 @@
   import { ref, reactive, onBeforeMount } from 'vue';
   import { getAccountPage, updateAccount, deleteAccount, storeAccount } from '@/api/system/account';
   import { getRoles } from '@/api/system/role';
+  import { getDeptPage } from '@/api/system/dept';
   import patternRule from '@/utils/patternRule';
   import { VXETable } from 'vxe-table';
   import { useI18n } from 'vue-i18n';
@@ -151,6 +161,7 @@
   const xTable = ref(null);
 
   const roleList = ref([]);
+  const deptList = ref([]);
 
   // 查询条件： 用户状态列表
   const statusList = ref([
@@ -185,7 +196,7 @@
       account: null,
       name: null,
       password: null,
-      email: null,
+      dept_id: null,
       status: null,
     },
     formRules: {
@@ -196,6 +207,7 @@
       role_ids: [{ required: true, message: t('accountPage.role') + t('modal.form.require') }],
       status: [{ required: true, message: t('accountPage.status') + t('modal.form.require') }],
       password: [{ required: true, message: t('accountPage.password') + t('modal.form.require') }],
+      /*
       email: [
         {
           pattern: patternRule.email,
@@ -203,16 +215,24 @@
           trigger: ['blur', 'change'],
         },
       ],
+      */
     },
     formConfig: {
       titleWidth: 100,
       titleAlign: 'right',
       items: [
         {
-          field: 'status',
-          title: t('accountPage.status'),
+          field: 'account',
+          title: t('accountPage.account'),
           span: 8,
-          itemRender: { name: '$select', options: statusList },
+          titlePrefix: {
+            message: t('modal.input.placeholder') + t('accountPage.account'),
+            icon: 'vxe-icon-question-circle-fill',
+          },
+          itemRender: {
+            name: '$input',
+            props: { placeholder: t('modal.input.placeholder') + t('accountPage.account') },
+          },
         },
         {
           span: 24,
@@ -250,6 +270,9 @@
             page: page.currentPage,
             pageSize: page.pageSize,
           };
+          if (form.account != null) {
+            data.account = form.account;
+          }
           return getAccountPage(data).then((res) => {
             let { items, total } = res.data;
             return { items, total };
@@ -282,15 +305,6 @@
         showOverflow: true,
         width: 200,
       },
-      {
-        field: 'updated',
-        title: t('table.updated'),
-        formatter({ cellValue }) {
-          return XEUtils.toDateString(cellValue, 'yyyy-MM-dd HH:mm:ss');
-        },
-        showOverflow: true,
-        width: 200,
-      },
       { title: t('table.operation'), showOverflow: true, slots: { default: 'operate' } },
     ],
   });
@@ -298,11 +312,11 @@
   // 新增用户
   const openAddModal = () => {
     getRoleList();
+    getDeptList();
     gridOptions.formData = {
       id: null,
       nickname: '',
       account: '',
-      email: '',
       status: '',
       role_ids: [],
     };
@@ -314,7 +328,7 @@
   const removeEvent = async (row) => {
     const type = await VXETable.modal.confirm(t('modal.confirm.content'));
     if (type === 'confirm') {
-      deleteAccount({ id: row.id }).then((res) => {
+      deleteAccount({ id: row.userId }).then((res) => {
         ElMessage.success(t('notice.success'));
         const $table = xTable.value;
         $table.commitProxy('query');
@@ -325,12 +339,13 @@
   // 编辑
   const editEvent = (row) => {
     getRoleList();
+    getDeptList();
     gridOptions.formData = {
-      id: row.id,
+      id: row.userId,
       nickname: row.nickname,
       account: row.account,
-      email: row.email,
       password: row.password,
+      dept_id: row.dept_id,
       status: row.status,
       role_ids: row.roles.map((v) => {
         return v.id;
@@ -347,7 +362,8 @@
 
   // 提交更新
   const submitEvent = () => {
-    if (gridOptions.formData.id) {
+    console.log(gridOptions.formData);
+    if (gridOptions.formData.userId) {
       // 更新
       updateAccount(gridOptions.formData).then((res) => {
         ElMessage.success(t('notice.success'));
@@ -372,6 +388,19 @@
     getRoles(data).then((res) => {
       nextTick(() => {
         roleList.value = res.data;
+      });
+    });
+  };
+
+  // 获取部门列表
+  const getDeptList = async () => {
+    const data = {
+      page: 1,
+      pageSize: 10000,
+    };
+    getDeptPage(data).then((res) => {
+      nextTick(() => {
+        deptList.value = res.data;
       });
     });
   };

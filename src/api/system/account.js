@@ -12,7 +12,7 @@ export const getAccountPage = (params) => {
 // 更新用户
 export const updateAccount = (data) => {
   return request({
-    url: '/sys/user/update',
+    url: '/system/updateOrCreateAccount',
     method: 'post',
     data,
   });
@@ -21,8 +21,8 @@ export const updateAccount = (data) => {
 // 删除用户
 export const deleteAccount = (data) => {
   return request({
-    url: '/sys/user/delete',
-    method: 'post',
+    url: '/system/deleteAccount',
+    method: 'delete',
     data,
   });
 };
@@ -30,7 +30,7 @@ export const deleteAccount = (data) => {
 // 新增用户
 export const storeAccount = (data) => {
   return request({
-    url: '/sys/user/insert',
+    url: '/system/updateOrCreateAccount',
     method: 'post',
     data,
   });
@@ -39,7 +39,7 @@ export const storeAccount = (data) => {
 // 更新密码
 export const updatePassword = (data) => {
   return request({
-    url: '/sys/user/update/password',
+    url: '/system/updatePassword',
     method: 'post',
     data,
   });

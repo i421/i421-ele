@@ -260,6 +260,12 @@
             page: page.currentPage,
             pageSize: page.pageSize,
           };
+          if (form.name != null) {
+            data.name = form.name;
+          }
+          if (form.status != null) {
+            data.status = form.status;
+          }
           return getMenuPage(data).then((res) => {
             let items = res.data;
             let total = res.data.length;
@@ -325,6 +331,9 @@
   // 编辑
   const editEvent = (row) => {
     getMenuList();
+    if (row.parentId == -1) {
+      row.parentId = '';
+    }
     gridOptions.formData = {
       id: row.id,
       name: row.name,
@@ -345,6 +354,9 @@
 
   // 提交更新
   const submitEvent = () => {
+    if (gridOptions.formData.parentId == '') {
+      gridOptions.formData.parentId = -1;
+    }
     if (gridOptions.formData.id) {
       // 更新
       updateMenu(gridOptions.formData).then((res) => {
@@ -367,15 +379,8 @@
   // 获取菜单列表
   const getMenuList = async () => {
     const data = {
-      cols: [],
-      conds: [],
-      distinct: false,
-      orders: [
-        {
-          asc: true,
-          col: 'order_no',
-        },
-      ],
+      page: 1,
+      pageSize: 10000,
     };
     getMenus(data).then((res) => {
       nextTick(() => {

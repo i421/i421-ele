@@ -12,7 +12,7 @@ export const getDictPage = (params) => {
 // 更新部门
 export const updateDict = (data) => {
   return request({
-    url: '/sys/config/update',
+    url: '/system/updateOrCreateConfig',
     method: 'post',
     data,
   });
@@ -21,8 +21,8 @@ export const updateDict = (data) => {
 // 删除部门
 export const deleteDict = (data) => {
   return request({
-    url: '/sys/config/delete',
-    method: 'post',
+    url: '/system/deleteConfig',
+    method: 'delete',
     data,
   });
 };
@@ -30,7 +30,7 @@ export const deleteDict = (data) => {
 // 新增部门
 export const storeDict = (data) => {
   return request({
-    url: '/sys/config/insert',
+    url: '/system/updateOrCreateConfig',
     method: 'post',
     data,
   });

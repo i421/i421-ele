@@ -1,11 +1,11 @@
 import request from '@/utils/request.js';
 
 // 获取菜单
-export const getMenus = (data) => {
+export const getMenus = (params) => {
   return request({
-    url: '/sys/menu/query',
-    method: 'post',
-    data,
+    url: '/system/getMenuList',
+    method: 'get',
+    params,
   });
 };
 
@@ -21,7 +21,7 @@ export const getMenuPage = (params) => {
 // 更新菜单
 export const updateMenu = (data) => {
   return request({
-    url: '/sys/menu/update',
+    url: '/system/updateOrCreateMenu',
     method: 'post',
     data,
   });
@@ -30,8 +30,8 @@ export const updateMenu = (data) => {
 // 删除菜单
 export const deleteMenu = (data) => {
   return request({
-    url: '/sys/menu/delete',
-    method: 'post',
+    url: '/system/deleteMenu',
+    method: 'delete',
     data,
   });
 };
@@ -39,7 +39,7 @@ export const deleteMenu = (data) => {
 // 新增菜单
 export const storeMenu = (data) => {
   return request({
-    url: '/sys/menu/insert',
+    url: '/system/updateOrCreateMenu',
     method: 'post',
     data,
   });

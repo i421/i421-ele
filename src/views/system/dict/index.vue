@@ -66,6 +66,23 @@
               ></vxe-input>
             </template>
           </vxe-form-item>
+          <vxe-form-item
+            field="parentId"
+            :title="t('dictPage.parentId')"
+            :span="24"
+            :item-render="{}"
+          >
+            <template #default="{ data }">
+              <vxe-select v-model="data.parentId" transfer clearable>
+                <vxe-option
+                  v-for="item in dictList"
+                  :key="item.id"
+                  :value="item.id"
+                  :label="item.code"
+                ></vxe-option>
+              </vxe-select>
+            </template>
+          </vxe-form-item>
           <vxe-form-item field="sort" :title="t('dictPage.sort')" :span="24" :item-render="{}">
             <template #default="{ data }">
               <vxe-input
@@ -77,7 +94,7 @@
           <vxe-form-item field="remark" :title="t('dictPage.remark')" :span="24" :item-render="{}">
             <template #default="{ data }">
               <vxe-input
-                v-model.number="data.remark"
+                v-model="data.remark"
                 :placeholder="t('modal.input.placeholder') + t('dictPage.remark')"
               ></vxe-input>
             </template>
@@ -106,7 +123,7 @@
 
   const xTable = ref(null);
 
-  const roleList = ref([]);
+  const dictList = ref([]);
 
   // 表格: 配置
   const gridOptions = reactive({
@@ -129,6 +146,7 @@
       c_key: null,
       value: null,
       sort: null,
+      parentId: null,
       remark: null,
     },
     formRules: {
@@ -232,13 +250,15 @@
 
   // 新增用户
   const openAddModal = () => {
+    getDictList();
     gridOptions.formData = {
       id: null,
-      code: '',
-      c_key: '',
-      value: '',
-      sort: '',
-      remark: '',
+      code: null,
+      c_key: null,
+      value: null,
+      parentId: null,
+      sort: null,
+      remark: null,
     };
     gridOptions.selectRow = null;
     gridOptions.showEdit = true;
@@ -258,12 +278,18 @@
 
   // 编辑
   const editEvent = (row) => {
+    getDictList();
+    // 顶层转化
+    if (row.parentId == -1) {
+      row.parentId = '';
+    }
     gridOptions.formData = {
       id: row.id,
       code: row.code,
       c_key: row.c_key,
       value: row.value,
       sort: row.sort,
+      parentId: row.parentId,
       remark: row.remark,
     };
     gridOptions.selectRow = row;
@@ -277,6 +303,10 @@
 
   // 提交更新
   const submitEvent = () => {
+    // 顶层转化
+    if (gridOptions.formData.parentId == '') {
+      gridOptions.formData.parentId = -1;
+    }
     if (gridOptions.formData.id) {
       // 更新
       updateDict(gridOptions.formData).then((res) => {
@@ -294,6 +324,20 @@
     }
     gridOptions.selectRow = null;
     gridOptions.showEdit = false;
+  };
+
+  // 获取配置列表
+  const getDictList = async () => {
+    const data = {
+      page: 1,
+      pageSize: 10000,
+      status: 0,
+    };
+    return getDictPage(data).then((res) => {
+      nextTick(() => {
+        dictList.value = res.data.items;
+      });
+    });
   };
 
   // 请求
